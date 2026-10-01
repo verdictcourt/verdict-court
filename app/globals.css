@@ -435,23 +435,28 @@ button, input, textarea, select { font: inherit; }
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: .18;
-  filter: sepia(.12) saturate(.72) contrast(.9);
+  opacity: .78;
+  filter: sepia(.06) saturate(.62) contrast(.9);
   transform: scale(1.02);
 }
 .scene-card::after {
   content: "";
   position: absolute;
   inset: 0;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(255,250,244,.97) 0%, rgba(255,250,244,.89) 47%, rgba(255,250,244,.74) 100%);
+  background: linear-gradient(90deg, rgba(255,250,244,.92) 0%, rgba(255,250,244,.76) 47%, rgba(255,250,244,.34) 100%);
   pointer-events: none;
 }
-.scene-judges::before { background-image: linear-gradient(135deg, rgba(143,122,85,.16), rgba(239,229,214,.86)), radial-gradient(circle at 50% 35%, rgba(143,122,85,.20), transparent 28%), linear-gradient(90deg, transparent 15%, rgba(143,122,85,.12) 15% 16%, transparent 16% 84%, rgba(143,122,85,.12) 84% 85%, transparent 85%); }
-.scene-lawyer::before { background-image: linear-gradient(135deg, rgba(142,120,85,.14), rgba(241,232,219,.86)), radial-gradient(circle at 64% 32%, rgba(142,120,85,.18), transparent 20%), linear-gradient(90deg, rgba(142,120,85,.08) 12%, transparent 12% 78%, rgba(142,120,85,.10) 78% 91%, transparent 91%); background-position: 58% center; opacity: .16; }
-.scene-jury::before { background-image: linear-gradient(135deg, rgba(142,120,86,.13), rgba(240,230,216,.88)), radial-gradient(ellipse at 50% 66%, rgba(142,120,86,.18), transparent 35%), linear-gradient(0deg, transparent 70%, rgba(142,120,86,.09) 70% 72%, transparent 72%); opacity: .15; }
-.scene-court::before { background-image: linear-gradient(135deg, rgba(143,121,87,.14), rgba(239,229,213,.86)), radial-gradient(circle at 54% 34%, rgba(143,121,87,.18), transparent 21%), linear-gradient(90deg, transparent 20%, rgba(143,121,87,.08) 20% 32%, transparent 32% 68%, rgba(143,121,87,.08) 68% 80%, transparent 80%); background-position: 62% center; opacity: .16; }
-.scene-bailiff::before { background-image: linear-gradient(135deg, rgba(142,121,85,.12), rgba(243,234,223,.86)), radial-gradient(circle at 70% 24%, rgba(142,121,85,.22), transparent 13%), linear-gradient(110deg, transparent 0 58%, rgba(142,121,85,.12) 58% 60%, transparent 60%); background-position: 70% center; opacity: .20; }
+.scene-judges::before { background-image: url("/scenes/judges-chambers.webp"); background-position: center center; }
+.scene-lawyer::before { background-image: url("/scenes/lawyer-office.webp"); background-position: center center; }
+.scene-jury::before { background-image: url("/scenes/jury-room.webp"); background-position: center center; }
+.scene-court::before { background-image: url("/scenes/live-court.webp"); background-position: center center; }
+.scene-bailiff::before { background-image: url("/scenes/bailiff.webp"); background-position: 70% center; }
 
 .feature-pills {
   display: grid;
@@ -501,23 +506,24 @@ button, input, textarea, select { font: inherit; }
 }
 .numbered-pills { gap: 16px; }
 .chamber-scene, .questions-scene { padding: 28px; }
-.chamber-pills .feature-pill { min-height: 132px; }
-.question-pills { grid-template-columns: repeat(3, minmax(0,1fr)); }
-.question-pills .feature-pill { min-height: 158px; }
+.chamber-pills { max-width: 78%; }
+.chamber-pills .feature-pill { min-height: 152px; }
+.question-pills { grid-template-columns: repeat(3, minmax(0,1fr)); max-width: 88%; }
+.question-pills .feature-pill { min-height: 180px; }
 
-.intake-scene { grid-column: span 5; min-height: 590px; }
+.intake-scene { grid-column: span 5; min-height: 590px; padding-top: 150px; }
 .intake-scene + .form-card { grid-column: span 7; }
-.intake-scene::after { background: linear-gradient(90deg, rgba(255,250,244,.97), rgba(255,250,244,.86)); }
+.intake-scene::after { background: linear-gradient(180deg, rgba(255,250,244,.46), rgba(255,250,244,.88) 30%, rgba(255,250,244,.95)); }
 
 .live-scene { min-height: 430px; }
-.live-scene::after { background: linear-gradient(90deg, rgba(255,250,244,.97), rgba(255,250,244,.87) 55%, rgba(255,250,244,.67)); }
+.live-scene::after { background: linear-gradient(90deg, rgba(255,250,244,.88), rgba(255,250,244,.76) 55%, rgba(255,250,244,.40)); }
 .compact-pills .feature-pill { min-height: 108px; }
 .live-guide-card { min-height: 430px; }
 .live-instructions .feature-pill { min-height: 142px; }
 
 .verdict-scene { min-height: 500px; }
 .verdict-scene::after {
-  background: linear-gradient(90deg, rgba(255,250,244,.97) 0%, rgba(255,250,244,.93) 48%, rgba(255,250,244,.58) 100%);
+  background: linear-gradient(90deg, rgba(255,250,244,.94) 0%, rgba(255,250,244,.86) 48%, rgba(255,250,244,.24) 100%);
 }
 .verdict-badge {
   display: inline-flex;
@@ -544,6 +550,8 @@ button, input, textarea, select { font: inherit; }
   .feature-pills.two-col, .feature-pills.three-col, .question-pills { grid-template-columns: 1fr; }
   .scene-card { min-height: auto; }
   .feature-pill { min-height: auto; }
-  .scene-card::before { opacity: .10; }
-  .scene-card::after { background: rgba(255,250,244,.92); }
+  .scene-card { padding-top: 130px; }
+  .chamber-pills, .question-pills { max-width: 100%; }
+  .scene-card::before { opacity: .68; }
+  .scene-card::after { background: linear-gradient(180deg, rgba(255,250,244,.42), rgba(255,250,244,.93) 150px); }
 }
