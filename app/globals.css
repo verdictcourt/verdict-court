@@ -420,43 +420,38 @@ button, input, textarea, select { font: inherit; }
   .gate-card { padding: 25px 20px; }
 }
 
-/* VC-01 Founder visual refinement — subtle environmental scenes + stronger pill hierarchy */
-.scene-card {
+/* Full-page scenes follow the selected room; cards remain readable surfaces. */
+.page-scene {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
-  min-height: 330px;
 }
-.scene-card::before {
+.page-scene::before, .page-scene::after {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
+  pointer-events: none;
+}
+.page-scene::before {
   z-index: -2;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   opacity: .78;
   filter: sepia(.06) saturate(.62) contrast(.9);
-  transform: scale(1.02);
 }
-.scene-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: auto;
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+.page-scene::after {
   z-index: -1;
-  background: linear-gradient(90deg, rgba(255,250,244,.92) 0%, rgba(255,250,244,.76) 47%, rgba(255,250,244,.34) 100%);
-  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,250,244,.92) 0%, rgba(255,250,244,.80) 47%, rgba(255,250,244,.64) 100%);
 }
-.scene-judges::before { background-image: url("/scenes/judges-chambers.webp"); background-position: center center; }
-.scene-lawyer::before { background-image: url("/scenes/lawyer-office.webp"); background-position: center center; }
-.scene-jury::before { background-image: url("/scenes/jury-room.webp"); background-position: center center; }
-.scene-court::before { background-image: url("/scenes/live-court.webp"); background-position: center center; }
+.scene-judges::before { background-image: url("/scenes/judges-chambers.webp"); }
+.scene-lawyer::before { background-image: url("/scenes/lawyer-office.webp"); }
+.scene-jury::before { background-image: url("/scenes/jury-room.webp"); }
+.scene-court::before { background-image: url("/scenes/live-court.webp"); }
 .scene-bailiff::before { background-image: url("/scenes/bailiff.webp"); background-position: 70% center; }
+.page-scene .card {
+  background: linear-gradient(180deg, rgba(255,251,246,.90), rgba(249,243,235,.88));
+}
+.page-scene .subtitle { color: #5e554c; }
 
 .feature-pills {
   display: grid;
@@ -505,26 +500,20 @@ button, input, textarea, select { font: inherit; }
   font-weight: 900;
 }
 .numbered-pills { gap: 16px; }
-.chamber-scene, .questions-scene { padding: 28px; }
-.chamber-pills { max-width: 78%; }
+.chamber-scene, .questions-scene { min-height: 330px; padding: 28px; }
 .chamber-pills .feature-pill { min-height: 152px; }
-.question-pills { grid-template-columns: repeat(3, minmax(0,1fr)); max-width: 88%; }
+.question-pills { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .question-pills .feature-pill { min-height: 180px; }
 
-.intake-scene { grid-column: span 5; min-height: 590px; padding-top: 150px; }
+.intake-scene { grid-column: span 5; min-height: 590px; }
 .intake-scene + .form-card { grid-column: span 7; }
-.intake-scene::after { background: linear-gradient(180deg, rgba(255,250,244,.46), rgba(255,250,244,.88) 30%, rgba(255,250,244,.95)); }
 
 .live-scene { min-height: 430px; }
-.live-scene::after { background: linear-gradient(90deg, rgba(255,250,244,.88), rgba(255,250,244,.76) 55%, rgba(255,250,244,.40)); }
 .compact-pills .feature-pill { min-height: 108px; }
 .live-guide-card { min-height: 430px; }
 .live-instructions .feature-pill { min-height: 142px; }
 
 .verdict-scene { min-height: 500px; }
-.verdict-scene::after {
-  background: linear-gradient(90deg, rgba(255,250,244,.94) 0%, rgba(255,250,244,.86) 48%, rgba(255,250,244,.24) 100%);
-}
 .verdict-badge {
   display: inline-flex;
   align-items: center;
@@ -548,10 +537,9 @@ button, input, textarea, select { font: inherit; }
 }
 @media (max-width: 720px) {
   .feature-pills.two-col, .feature-pills.three-col, .question-pills { grid-template-columns: 1fr; }
-  .scene-card { min-height: auto; }
+  .chamber-scene, .questions-scene, .intake-scene, .live-scene, .verdict-scene { min-height: auto; }
   .feature-pill { min-height: auto; }
-  .scene-card { padding-top: 130px; }
   .chamber-pills, .question-pills { max-width: 100%; }
-  .scene-card::before { opacity: .68; }
-  .scene-card::after { background: linear-gradient(180deg, rgba(255,250,244,.42), rgba(255,250,244,.93) 150px); }
+  .page-scene::before { opacity: .68; }
+  .page-scene::after { background: linear-gradient(180deg, rgba(255,250,244,.84), rgba(255,250,244,.78)); }
 }

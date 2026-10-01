@@ -16,6 +16,16 @@ const tabs = [
 
 type Tab = (typeof tabs)[number][0];
 
+const tabScenes: Record<Tab, string> = {
+  home: "court",
+  case: "judges",
+  file: "lawyer",
+  jury: "jury",
+  live: "court",
+  verdict: "bailiff",
+  bench: "judges",
+};
+
 type DraftCase = {
   title: string;
   juryQuestion: string;
@@ -111,7 +121,7 @@ export function VerdictCourtApp() {
   }
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell page-scene scene-${tabScenes[tab]}`}>
       <aside className="sidebar">
         <div className="brand">
           <Image src="/verdict-court-logo.svg" alt="Verdict Court logo" width={52} height={52} />
@@ -175,7 +185,7 @@ function CaseChamber() {
   return <>
     <Header kicker="Case Chamber" title="VC-0926-1842" subtitle="A structured, two-sided case file. Claims, responses, exhibits, neutral clerk brief, and jury questions stay separated so theatrics never replace facts."/>
     <div className="grid">
-      <article className="card full scene-card scene-judges chamber-scene">
+      <article className="card full chamber-scene">
         <div className="kicker">Judges’ Chambers Snapshot</div>
         <div className="feature-pills two-col chamber-pills">
           <FeaturePill title="Petitioner Record" text="Primary claim, supporting timeline, and admitted motive theory are surfaced before emotion takes over the room." />
@@ -195,7 +205,7 @@ function FileCase({ draft, setDraft, submitDraft }: { draft: DraftCase; setDraft
   return <>
     <Header kicker="File a Case" title="Build the record before the drama." subtitle="A guided intake prevents vague accusations, strips unnecessary personal information, and distinguishes opinion from verifiable claims."/>
     <div className="grid">
-      <article className="card third scene-card scene-lawyer intake-scene">
+      <article className="card third intake-scene">
         <div className="kicker">Filing Sequence</div>
         <div className="feature-pills numbered-pills">
           <NumberedPill number="1" title="Choose Mode" text="Named public cases require respondent consent. Otherwise use anonymized hypothetical mode." />
@@ -223,7 +233,7 @@ function JuryRoom() {
     <div className="grid">
       <article className="card half vote"><h2>Petitioner</h2><div className="meter"><span style={{width:"63%"}}/></div><p className="meta">63% · 11,592 qualified jurors</p></article>
       <article className="card half vote"><h2>Respondent</h2><div className="meter"><span style={{width:"37%"}}/></div><p className="meta">37% · 6,808 qualified jurors</p></article>
-      <article className="card full scene-card scene-jury questions-scene">
+      <article className="card full questions-scene">
         <div className="kicker">Clerk-Generated Jury Questions</div>
         <div className="feature-pills question-pills">
           <FeaturePill title="1. Which explanation is better supported by the admitted timeline?" text="Start with the sequence of events before weighing emotional reactions or assumptions." />
@@ -239,7 +249,7 @@ function LiveCourt() {
   return <>
     <Header kicker="Live Court" title="The lights come up. The record stays clean." subtitle="Hosted hearings use timed openings, moderator-selected questions and a hard evidence boundary. MVP uses external video/recorded media rather than proprietary livestream infrastructure." action={<button className="btn red">LIVE · DEMO</button>}/>
     <div className="grid">
-      <article className="card hero scene-card scene-court live-scene">
+      <article className="card hero live-scene">
         <div className="case-no">LIVE HEARING</div>
         <div className="case-title">Opening Statements</div>
         <div className="feature-pills two-col live-pills compact-pills">
@@ -272,7 +282,7 @@ function LiveCourt() {
 function VerdictReveal() {
   return <>
     <Header kicker="Verdict Reveal" title="The room goes quiet." subtitle="A cinematic reveal delivers the vote, strongest reasons on both sides, and what evidence actually moved the jury."/>
-    <article className="card verdict scene-card scene-bailiff verdict-scene">
+    <article className="card verdict verdict-scene">
       <div className="verdict-badge">Community Verdict</div>
       <div className="seal seal-sm">V</div>
       <div className="title small-title">For the Petitioner</div>
