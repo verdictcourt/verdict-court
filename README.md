@@ -28,3 +28,5 @@ npm run dev
 
 ## Release status
 VC-01 is an engineering baseline, not production approval. Before any public release, satisfy the canonical release gate: tested RLS, moderation, consent, prohibited-case taxonomy, takedown controls, abuse/rate limits, privacy/terms/community standards, account deletion, evidence media restrictions and human legal review.
+
+<!-- Vercel production deployment trigger: 2026-10-01 -->
